@@ -1,0 +1,41 @@
+
+Este proyecto permite registrar productos con selección dinámica de bodegas, sucursales y monedas usando PHP, PostgreSQL y jQuery.
+
+
+Requisitos previos
+
+- PHP 8.4.12 en adelante con PDO y PDO_PGSQL.
+- PostgreSQL 17.
+- Servidor local (XAMPP, WAMP, Laragon, Apache + PHP).
+- Navegador moderno.
+
+
+ Instalación
+
+1. **Copiar proyecto**
+   - Coloca toda la carpeta en tu servidor local
+
+2. **Base de datos**
+   - Se entregara el archivo de la base de datos para poder exportar la estructura.
+
+3. **Configurar conexión**
+   - Abrir `php/conexion.php` y ajustar:
+     ```php
+     $conn = new PDO("pgsql:host=localhost;port=5432;dbname=productos_bd;user=postgres;password=root");
+     ```
+
+Notas importantes
+
+- Validaciones front-end:
+  - Código: alfanumérico, 5–15 caracteres.
+  - Nombre: 2–50 caracteres.
+  - Precio: número con hasta 2 decimales.
+  - Materiales: mínimo 2 seleccionados.
+  - Descripción: 10–1000 caracteres.
+- AJAX envía datos a `guardar_producto.php` y recibe respuesta JSON.
+- Asegúrate que PostgreSQL esté corriendo y que PDO_PGSQL esté habilitado.
+
+Autor
+
+- Creado por: [Gustavo Geldes]
+- Fecha: 24-09-2025

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Productos</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <form id="formProducto">
+      <h2>Formulario de Producto</h2>
+    <div class="form-grid">
+      <div>
+        <label for="codigo">Código:</label>
+        <input type="text" id="codigo" name="codigo">
+      </div>
+
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+      </div>
+
+      <div>
+        <label for="bodega">Bodega:</label>
+        <select id="bodega" name="bodega">
+          <option value="">-- Seleccione --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="sucursal">Sucursal:</label>
+        <select id="sucursal" name="sucursal">
+          <option value="">-- Seleccione --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="moneda">Moneda:</label>
+        <select id="moneda" name="moneda">
+          <option value="">-- Seleccione --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="precio">Precio:</label>
+        <input type="text" id="precio" name="precio">
+      </div>
+    </div>
+
+    <label>Materiales:</label>
+    <div class="checkbox-group">
+      <input type="checkbox" name="materiales[]" value="madera"> Madera
+      <input type="checkbox" name="materiales[]" value="metal"> Metal
+      <input type="checkbox" name="materiales[]" value="plastico"> Plástico
+    </div>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion"></textarea>
+
+    <button type="submit" id="btnGuardar">Guardar Producto</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
