@@ -63,18 +63,18 @@ select {
 }
 
 button {
-  display: block;
-  width: 100%;
-  padding: 12px;
+  display: block;        
+  margin: 20px auto;     
+  width: 200px;         
+  padding: 10px 15px;    
   background-color: #1abc9c;
   border: none;
   border-radius: 6px;
   color: white;
-  font-size: 16px;
+  font-size: 14px;         
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 button:hover {
   background-color: #16a085;
 }

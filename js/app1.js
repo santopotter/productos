@@ -3,7 +3,6 @@ $(document).ready(function() {
     $.getJSON('php/obtener_bodegas.php')
         .done(function(data){
             let select = $('#bodega');
-            select.empty().append('<option value="">-- Seleccione --</option>');
             $.each(data, function(i, b){
                 select.append(`<option value="${b.id_bodega}">${b.nombre_bodega}</option>`);
             });
@@ -15,7 +14,6 @@ $(document).ready(function() {
     $.getJSON('php/obtener_moneda.php')
         .done(function(data){
             let select = $('#moneda');
-            select.empty().append('<option value="">-- Seleccione --</option>');
             $.each(data, function(i, m){
                 select.append(`<option value="${m.id_moneda}">${m.nombre_moneda}</option>`);
             });
@@ -27,10 +25,13 @@ $(document).ready(function() {
 $('#bodega').on('change', function(){
     let idBodega = $(this).val();
     let select = $('#sucursal');
-    select.empty().append('<option value="">-- Seleccione --</option>');
+    select.empty(); // vaciamos todo
+
+    // ✅ agregamos primera opción en blanco
+    select.append('<option value=""></option>');
 
     if(idBodega){
-        $.getJSON('/php/obtener_surcursales.php', {id_bodega: idBodega}, function(data){
+        $.getJSON('php/obtener_surcursales.php', {id_bodega: idBodega}, function(data){
             $.each(data, function(i, s){
                 select.append(`<option value="${s.id_sucursal}">${s.nombre_sucursal}</option>`);
             });
@@ -49,7 +50,8 @@ $('#bodega').on('change', function(){
         const sucursal = $('#sucursal').val();
         const moneda = $('#moneda').val();
         const precio = $('#precio').val().trim();
-        let materiales = $('input[name="materiales"]:checked').length;
+        let materiales = $('input[name="materiales[]"]:checked').length;
+
         const descripcion = $('#descripcion').val().trim();
 
         if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,15}$/.test(codigo)){ alert("Código inválido"); return; }
@@ -58,7 +60,7 @@ $('#bodega').on('change', function(){
         if(!sucursal){ alert("Seleccione sucursal"); return; }
         if(!moneda){ alert("Seleccione moneda"); return; }
         if(!/^\d+(\.\d{1,2})?$/.test(precio)){ alert("Precio inválido"); return; }
-        if(materiales.length<2){ alert("Seleccione al menos 2 materiales"); return; }
+        if(materiales<2){ alert("Seleccione al menos 2 materiales"); return; }
         if(descripcion.length<10 || descripcion.length>1000){ alert("Descripción inválida"); return; }
 
         let formData = new FormData(this);
@@ -74,7 +76,7 @@ $('#bodega').on('change', function(){
                 if(data.message){
                     alert(data.message);
                     $('#formProducto')[0].reset();
-                    $('#sucursal').empty().append('<option value="">-- Seleccione --</option>');
+                    $('#sucursal').empty().append('<option value=""></option>');
                 }
             },
             error: function(err){
